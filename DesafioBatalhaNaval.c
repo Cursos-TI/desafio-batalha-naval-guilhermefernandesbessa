@@ -1,18 +1,20 @@
 #include <stdio.h>
+#define tamanho 10
 
-void inicializarTabuleiro(int tabuleiro[10][10]) {
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+
+void inicializarTabuleiro(int tabuleiro[tamanho][tamanho]) {
+    for (int i = 0; i < tamanho; i++) {
+        for (int j = 0; j < tamanho; j++) {
             tabuleiro[i][j] = 0; // 0 representa água
         }
     }
 }
 
 // Void para exibir o tabuleiro
-void exibirTabuleiro(int tabuleiro[10][10]) {
+void exibirTabuleiro(int tabuleiro[tamanho][tamanho]) {
     printf("Tabuleiro Batalha Naval:\n");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    for (int i = 0; i < tamanho; i++) {
+        for (int j = 0; j < tamanho; j++) {
             printf("%2d ", tabuleiro[i][j]);
         }
         printf("\n");
@@ -20,7 +22,7 @@ void exibirTabuleiro(int tabuleiro[10][10]) {
 }
 
 // Void para ver se a posição é valida
-int posicaoLivre(int tabuleiro[10][10], int c, int l, int posicao) {
+int posicaoLivre(int tabuleiro[tamanho][tamanho], int c, int l, int posicao) {
     for (int i = 0; i < 3; i++) {
         int novoC = c, novoL = l; 
 // Fiz o novoC e um novoL pois se nao os fizesse, ficaria '3 3 0 3' ao inves de '3 3 3'  
@@ -44,7 +46,7 @@ int posicaoLivre(int tabuleiro[10][10], int c, int l, int posicao) {
             novoL -= i;
         }
 
-        if (novoL < 0 || novoL >= 10 || novoC < 0 || novoC >= 10 || tabuleiro[novoL][novoC] == 3) {
+        if (novoL < 0 || novoL >= tamanho || novoC < 0 || novoC >= tamanho || tabuleiro[novoL][novoC] == 3) {
             return 0; // posição inválida ou já ocupada
         }
     }
@@ -52,7 +54,7 @@ int posicaoLivre(int tabuleiro[10][10], int c, int l, int posicao) {
 }
 
 // Void para posicionar os navios
-void posicionarNavio(int tabuleiro[10][10], int c, int l, int posicao) {
+void posicionarNavio(int tabuleiro[tamanho][tamanho], int c, int l, int posicao) {
     for (int i = 0; i < 3; i++) {
         int novoC = c, novoL = l;
 // Fiz o novoC e um novoL pois se nao os fizesse, ficaria '3 3 0 3' ao inves de '3 3 3' 
@@ -81,7 +83,7 @@ void posicionarNavio(int tabuleiro[10][10], int c, int l, int posicao) {
 }
 
 int main() {
-    int tabuleiro[10][10];
+    int tabuleiro[tamanho][tamanho];
 
     // Inicializar o tabuleiro
     inicializarTabuleiro(tabuleiro);
